@@ -1,0 +1,21 @@
+
+////////////////////////////////////////////
+		CONFIGURAR ID ARDUINO
+///////////////////////////////////////////
+
+1. Descargar ID Arduino.
+2. Conectar el arduino.
+3. Entrar a Panel de Control / Administrador de dispositivos
+4. Buscar Puertos (COM y LPT).
+5. Elegir el dispositivo.
+6. Click derecho - Propiedades.
+7. Propiedades / Controlador / Actualizar controlador
+8. Buscar carpeta: Arduino 1.8 / Drivers
+9. Se instala...
+10. Ejecutar Arduino.
+11. Para configurar la tarjeta:
+12. Herramientas / Placa / Arduino Mega 2560.
+13. Herramientas / Puerto / Se elige puerto configurado.
+14. Entramos a Archivos / Ejemplos / 01. Basics / Blink 
+15. Editar de 1000 a 500.
+16. Compilar y Ejecutar.
