@@ -24,11 +24,12 @@ void loop() {
   bits[3] = digitalRead(d);
   bits[4] = digitalRead(e);
   bits[5] = digitalRead(f);
-  bits[6] = digitalRead(h);
-  bits[7] = digitalRead(g);
+  bits[6] = digitalRead(g);
+  bits[7] = digitalRead(h);
 
   decimal = bits[0] + bits[1]*2 + bits[2]*4 + bits[3]*8 + bits[4]*16 + bits[5]*32 + bits[6]*64 + bits[7]*128;
-  //Serial.println(decimal);
+  
+  Serial.println(decimal);
   
   //digitalWrite(salida, HIGH);
   //delay(800);
@@ -39,5 +40,5 @@ void loop() {
   Serial.print("Grados: ");
   Serial.print(grados);
   Serial.println("°C");
-  delay(200);
+  delay(1000);
 }
