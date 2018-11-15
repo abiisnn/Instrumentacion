@@ -29,16 +29,17 @@ void loop() {
 
   decimal = bits[0] + bits[1]*2 + bits[2]*4 + bits[3]*8 + bits[4]*16 + bits[5]*32 + bits[6]*64 + bits[7]*128;
   
-  Serial.println(decimal);
+  //Serial.println(decimal);
   
-  //digitalWrite(salida, HIGH);
-  //delay(800);
-  //digitalWrite(salida, LOW);
+  digitalWrite(salida, HIGH);
+  delay(1000);
+  digitalWrite(salida, LOW);
+  delay(1000);
 
   
   grados = resolucion*decimal*10;
   Serial.print("Grados: ");
   Serial.print(grados);
   Serial.println("°C");
-  delay(1000);
+  delay(100);
 }
