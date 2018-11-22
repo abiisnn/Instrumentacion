@@ -1,6 +1,7 @@
-double temp, bits[8], decimal, grados;
+double bits[8], decimal;
+byte temp, grados;
 const int a = 22, b = 24, c = 26, d = 28, e = 30, f = 32, g = 34, h = 36, salida = 9;
-const double resolucion = 5.00/255.00, transp = 5.00/360.00;
+const double resolucion = 5.00/255.00;
 int estado = 0;
 
 void setup() {
@@ -30,16 +31,16 @@ void loop() {
 
   decimal = bits[0] + bits[1]*2 + bits[2]*4 + bits[3]*8 + bits[4]*16 + bits[5]*32 + bits[6]*64 + bits[7]*128;
   temp = resolucion*decimal*10;
-  grados = transp*decimal*10;
+  grados = resolucion*decimal*57;
   estado = Serial.read();
 
   if(estado = '0'){
     digitalWrite(salida, LOW);
-    Serial.print(temp);
+    Serial.write(temp);
   }
   if(estado = '1'){
     digitalWrite(salida, HIGH);
-    Serial.print(grados);
+    Serial.write(grados);
   }
 
   delay(100);
