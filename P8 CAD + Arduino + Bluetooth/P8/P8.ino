@@ -2,11 +2,12 @@ double bits[8], decimal;
 byte temp, grados;
 const int a = 22, b = 24, c = 26, d = 28, e = 30, f = 32, g = 34, h = 36, salida = 9;
 const double resolucion = 5.00/255.00;
-char estado = '0';
+int estado;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  Serial3.begin(9600);
   pinMode(a, INPUT);
   pinMode(b, INPUT);
   pinMode(c, INPUT);
@@ -31,24 +32,28 @@ void loop() {
 
   decimal = bits[0] + bits[1]*2 + bits[2]*4 + bits[3]*8 + bits[4]*16 + bits[5]*32 + bits[6]*64 + bits[7]*128;
   temp = resolucion*decimal*10;
-  
   byte val = map(temp,0.00,50.00,0,255);
-  
   grados = resolucion*decimal*57;
-  if(Serial.available()>0)
+
+  //estado = Serial3.read();
+  if(Serial.available() > 0)
   {
     estado = Serial.read();
+    //estado = Serial3.read();
+    //Serial.println(estado);
   }
-  switch(estado)
+
+  if(estado == '1')
   {
-    case '0':
-      digitalWrite(salida, HIGH);
-      Serial.write(val);
-      break;
-    case '1':
-      digitalWrite(salida, LOW);
-      Serial.write(grados);
-      break;
+    digitalWrite(salida, LOW);
+    Serial.println("OFF");
+    //Serial3.write(grados);
   }
-  delay(100);
+  else
+  {
+    digitalWrite(salida, HIGH); 
+    Serial.println("ON");
+    //Serial3.write(val);
+  }
+  delay(500);
 }
