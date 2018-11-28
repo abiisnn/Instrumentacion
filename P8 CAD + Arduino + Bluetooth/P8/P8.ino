@@ -1,5 +1,5 @@
 double bits[8], decimal;
-byte resultado;
+int temp, angulo;
 const int a = 22, b = 24, c = 26, d = 28, e = 30, f = 32, g = 34, h = 36, salida = 9;
 const double resolucion = 5.00/255.00;
 int val = '0', estado = 0;
@@ -31,7 +31,12 @@ void loop() {
   bits[7] = digitalRead(h);
 
   decimal = bits[0] + bits[1]*2 + bits[2]*4 + bits[3]*8 + bits[4]*16 + bits[5]*32 + bits[6]*64 + bits[7]*128;
-  val = Serial3.read();
+  temp = resolucion*decimal*10;
+  angulo = resolucion*decimal*57;
+
+  if(Serial3.available()){
+    val = Serial3.read();
+  }
   if(val == '1')
   {
     estado = 1;
@@ -45,15 +50,16 @@ void loop() {
   {
     digitalWrite(salida, HIGH); 
     Serial.print("Canal 0: ");
-    resultado = resolucion*decimal*10;
+    Serial3.println(temp);
+    Serial.println(temp);
   }
   else if(estado == 1)
   {
     digitalWrite(salida, LOW);
     Serial.print("Canal 1: ");
-    resultado = resolucion*decimal*10;
+    Serial3.println(angulo);
+    Serial.println(angulo);
   }
-  Serial3.print(resultado);
-  Serial.println(resultado);
-  delay(100);
+ 
+  delay(50);
 }
